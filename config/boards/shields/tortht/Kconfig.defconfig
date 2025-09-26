@@ -1,0 +1,22 @@
+if SHIELD_TORTHT_R
+
+config ZMK_KEYBOARD_NAME
+    default "tortht"
+
+config ZMK_SPLIT
+    default y
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+endif
+
+if SHIELD_TORTHT_L
+
+config ZMK_KEYBOARD_NAME
+    default "tortht_L"
+
+config ZMK_SPLIT
+    default y
+
+endif

@@ -1,0 +1,8 @@
+file_format: "1"
+id: tortht
+name: tortht
+type: shield
+url: https://github.com/yasio25119915/zmk-config-tortht
+requires: [seeeduino_xiao_ble]
+features:
+  - keys

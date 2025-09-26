@@ -1,0 +1,5 @@
+config SHIELD_TORTHT_R
+    def_bool $(shields_list_contains,tortht_R)
+
+config SHIELD_TORTHT_L
+    def_bool $(shields_list_contains,tortht_L)

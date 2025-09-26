@@ -1,0 +1,4 @@
+name: tortht
+build:
+  settings:
+    board_root: config

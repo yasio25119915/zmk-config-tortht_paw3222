@@ -1,0 +1,16 @@
+manifest:
+  remotes:
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
+    - name: yasio25119915
+      url-base: https://github.com/yasio25119915
+  projects:
+    - name: zmk
+      remote: zmkfirmware
+      revision: v0.2.1
+      import: app/west.yml
+    - name: zmk-pmw3610-driver
+      remote: yasio25119915
+      revision: main
+  self:
+    path: config
