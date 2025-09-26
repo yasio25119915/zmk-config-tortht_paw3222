@@ -51,16 +51,7 @@
     pinctrl-names = "default", "sleep";
     cs-gpios = <&gpio0 9 GPIO_ACTIVE_LOW>;
 
-    trackball: trackball@0 {
-        status = "okay";
-        compatible = "pixart,paw3222";
-        reg = <0>;
-        spi-max-frequency = <2000000>;
-        irq-gpios = <&gpio0 2 GPIO_ACTIVE_LOW>;
-    };
-};
-
-paw3222: paw3222@0 {
+    paw3222: paw3222@0 {
     compatible = "pixart,paw3222";
     reg = <0>;
     spi-max-frequency = <2000000>;
@@ -68,6 +59,14 @@ paw3222: paw3222@0 {
 
     automouse-layer = <4>;     /* マウスレイヤー番号 */
     scroll-layers = <5>;       /* スクロール用レイヤー */
+};
+    trackball: trackball@0 {
+        status = "okay";
+        compatible = "pixart,paw3222";
+        reg = <0>;
+        spi-max-frequency = <2000000>;
+        irq-gpios = <&gpio0 2 GPIO_ACTIVE_LOW>;
+    };
 };
 
 behaviors {
