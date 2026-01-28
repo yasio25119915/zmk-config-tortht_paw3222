@@ -1,4 +1,7 @@
 #include "tortht.dtsi"
+#include <input/processors.dtsi>
+#include <dt-bindings/zmk/input_transform.h>
+#include <zephyr/dt-bindings/input/input-event-codes.h>
 
 &default_transform {
     col-offset = <6>;
@@ -15,7 +18,7 @@
 };
 
 / {
-    trackball_listener {
+    trackball_listener: trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball>;
 
@@ -51,15 +54,6 @@
     pinctrl-names = "default", "sleep";
     cs-gpios = <&gpio0 9 GPIO_ACTIVE_LOW>;
 
-    paw3222: paw3222@0 {
-    compatible = "pixart,paw3222";
-    reg = <0>;
-    spi-max-frequency = <2000000>;
-    irq-gpios = <&gpio0 2 GPIO_ACTIVE_LOW>;
-
-    automouse-layer = <4>;     /* マウスレイヤー番号 */
-    scroll-layers = <5>;       /* スクロール用レイヤー */
-};
     trackball: trackball@0 {
         status = "okay";
         compatible = "pixart,paw3222";
@@ -69,41 +63,44 @@
     };
 };
 
-behaviors {
-    auto_mouse_layer: auto_mouse_layer {
-        compatible = "zmk,behavior-auto-mouse-layer";
-        label = "AUTO_MOUSE";
-        #binding-cells = <0>;
-        layer = <1>;          /* paw3222 の automouse-layer と一致 */
-        timeout-ms = <2000>;
+&trackball_listener {
+    status = "okay";
+    device = <&trackball>;
+        input-processors = 
+            //<&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>,        //X軸とY軸の入れ替え
+            <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,       //Y軸反転
+            //<&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,       //X軸反転
+            <&zip_temp_layer 4 10000>;                            //オートマウスレイヤーの選択
+    scroller {
+        layers = <5>;
+        input-processors = 
+           //<&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>,        //X軸とY軸の入れ替え
+           // <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,       //X軸反転
+           // <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,       //Y軸反転
+            <&zip_xy_to_scroll_mapper>,                         //スクロールモードに変更
+            <&zip_scroll_scaler 1 5>;                           //スクロール量を1/4倍
     };
 };
 
-keymap {
-    compatible = "zmk,keymap";
+// / {
+//   /omit-if-no-ref/ zip_temp_layer: zip_temp_layer {
+//     compatible = "zmk,input-processor-temp-layer";
+//     #input-processor-cells = <2>;
+//     require-prior-idle-ms = <350>; /* キー押下後、何msオートマウスレイヤに入らないようにするか、誤爆防止 */
+//   };
+// };
 
-    default_layer {
-        bindings = <
-            &auto_mouse_layer
-            &kp A
-            &kp B
-        >;
-    };
-
-    mouse_layer {
-        bindings = <
-            &mkp BTN_LEFT
-            &mkp BTN_RIGHT
-        >;
-    };
-
-    scroll_layer {
-        bindings = <
-            &kp UP
-            &kp DOWN
-        >;
-    };
+&zip_temp_layer {
+    excluded-positions = <
+        15 // h
+        16 // j
+        5  // u
+//        10 // a
+//        20 // z
+//        21 // x
+//        22 // c
+    >;
+    require-prior-idle-ms = <200>;
 };
-
 
 
