@@ -8,45 +8,7 @@
 #define SCROLL 5
 #define NUM 6
 
-#define JP_ZKHK  GRAVE        // Zenkaku ? Hankaku ? Kanji (半角 ? 全角 ? 漢字)
-#define JP_MINUS MINUS        // -
-#define JP_CARET EQUAL        // ^
-#define JP_YEN   INT3         // ?
-#define JP_AT    LBKT         // @
-#define JP_LBKT  RBKT         // [
-#define JP_EISU  CAPS         // Eis? (英数)
-#define JP_SEMI  SEMI         // ;
-#define JP_COLON SQT          // :
-#define JP_RBKT  NUHS         // ]
-#define JP_COMMA COMMA        // ,
-#define JP_DOT   DOT          // .
-#define JP_SLASH SLASH        // /
-#define JP_BSLH  INT1         // (backslash)
-#define JP_MHEN  INT5         // Muhenkan (無変換)
-#define JP_HENK  INT4         // Henkan (変換)
-#define JP_KANA  INT2         // Katakana ? Hiragana ? R?maji (カタカナ ? ひらがな ? ローマ字)
-#define JP_EXCL  LS(N1)       // !
-#define JP_DQT   LS(N2)       // "
-#define JP_HASH  LS(N3)       // #
-#define JP_DLLR  LS(N4)       // $
-#define JP_PRCNT LS(N5)       // %
-#define JP_AMPS  LS(N6)       // &
-#define JP_SQT   LS(N7)       // '
-#define JP_LPAR  LS(N8)       // (
-#define JP_RPAR  LS(N9)       // )
-#define JP_EQUAL LS(JP_MINUS) // =
-#define JP_TILDE LS(JP_CARET) // ~
-#define JP_PIPE  LS(JP_YEN)   // |
-#define JP_GRAVE LS(JP_AT)    // `
-#define JP_LBRC  LS(JP_LBKT)  // {
-#define JP_CAPS  LS(JP_EISU)  // Caps Lock
-#define JP_PLUS  LS(JP_SEMI)  // +
-#define JP_ASTRK LS(JP_COLON) // *
-#define JP_RBRC  LS(JP_RBKT)  // }
-#define JP_LT    LS(JP_COMMA) // <
-#define JP_RT    LS(JP_DOT)   // >
-#define JP_QMARK LS(JP_SLASH) // ?
-#define JP_UNDER LS(JP_BSLH)  // _
+
 
 
 &mt {
@@ -120,7 +82,7 @@
             bindings = <
 &kp Q             &kp W         &kp E         &kp R    &kp T                                                                         &kp Y          &kp U      &kp I      &kp O       &kp P
 &kp A             &kp S         &kp D         &kp F    &kp G                                                                         &kp H          &kp J      &kp K      &kp L       &lt_to_layer_0 4 MINUS
-&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V    &kp B        &lt_to_layer_0 5 JP_EQUAL                                        &kp N          &kp M      &kp COMMA  &kp DOT     &lt_to_layer_0 6 SLASH
+&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V    &kp B        &lt_to_layer_0 5 EQUAL                                           &kp N          &kp M      &kp COMMA  &kp DOT     &lt_to_layer_0 6 SLASH
 &mt LCTRL TAB     &kp LEFT_WIN  &kp LEFT_ALT  &lt_to_layer_0 6 LANG2  &lt_to_layer_0 3 LANG1  &lt_to_layer_0 2 SPACE    &kp BACKSPACE  &kp ENTER  &kp RALT   &kp RSHIFT  &kp DEL
             >;
         };
@@ -135,9 +97,9 @@
 
         NUM {
             bindings = <
-&kp AMPERSAND     &kp JP_DQT     &kp JP_LPAR       &kp JP_RPAR        &kp JP_AMPS                        &kp SQT       &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp JP_PLUS
-&kp EXCLAMATION   &kp JP_AT      &kp HASH          &kp DOLLAR         &kp PERCENT                        &kp JP_SEMI   &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp JP_ASTRK
-&kp JP_LBKT       &kp JP_RBKT    &kp JP_TILDE      &kp JP_QMARK       &kp JP_YEN    &kp JP_PIPE          &kp NUMBER_0  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp JP_UNDER
+&kp AMPERSAND     &kp SQT        &kp LPAR          &kp RPAR           &kp AMPS                           &kp SQT       &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp PLUS
+&kp EXCLAMATION   &kp AT         &kp HASH          &kp DOLLAR         &kp PERCENT                        &kp SEMI      &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp ASTRK
+&kp LBKT          &kp RBKT       &kp TILDE         &kp QMARK          &kp BSLH      &kp PIPE             &kp NUMBER_0  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp UNDER
 &trans            &trans         &trans            &trans             &trans        &trans               &trans        &trans        &trans        &trans        &trans
             >;
         };
